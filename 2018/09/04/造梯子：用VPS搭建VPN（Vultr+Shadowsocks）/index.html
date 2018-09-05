@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="翻墙,服务器," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="且将新火试新茶，诗酒趁年华。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="生云馆">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="最近开始了实验室搬砖的生活，首先要把基础运维工作做好。其中，VPN是必不可少的，对查阅国内外文献资料，学习学习国际前沿知识都是很有帮助的。以前一直用学校和公司的VPN，现在用不了了，于是打算自己搭一个。 本文记录如何使用Vultr（VPS提供商）和Shadowsocks来搭建属于自己的VPN。">
+<meta name="keywords" content="翻墙,服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="造梯子：用VPS搭建VPN（Vultr+Shadowsocks）">
+<meta property="og:url" content="http://yoursite.com/2018/09/04/造梯子：用VPS搭建VPN（Vultr+Shadowsocks）/index.html">
 <meta property="og:site_name" content="生云馆">
-<meta property="og:description" content="且将新火试新茶，诗酒趁年华。">
+<meta property="og:description" content="最近开始了实验室搬砖的生活，首先要把基础运维工作做好。其中，VPN是必不可少的，对查阅国内外文献资料，学习学习国际前沿知识都是很有帮助的。以前一直用学校和公司的VPN，现在用不了了，于是打算自己搭一个。 本文记录如何使用Vultr（VPS提供商）和Shadowsocks来搭建属于自己的VPN。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-05T06:24:12.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生云馆">
-<meta name="twitter:description" content="且将新火试新茶，诗酒趁年华。">
+<meta name="twitter:title" content="造梯子：用VPS搭建VPN（Vultr+Shadowsocks）">
+<meta name="twitter:description" content="最近开始了实验室搬砖的生活，首先要把基础运维工作做好。其中，VPN是必不可少的，对查阅国内外文献资料，学习学习国际前沿知识都是很有帮助的。以前一直用学校和公司的VPN，现在用不了了，于是打算自己搭一个。 本文记录如何使用Vultr（VPS提供商）和Shadowsocks来搭建属于自己的VPN。">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/04/造梯子：用VPS搭建VPN（Vultr+Shadowsocks）/"/>
 
 
 
 
 
-  <title>生云馆</title>
+  <title>造梯子：用VPS搭建VPN（Vultr+Shadowsocks） | 生云馆</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,9 +258,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -289,9 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/04/造梯子：用VPS搭建VPN（Vultr+Shadowsocks）/" itemprop="url">造梯子：用VPS搭建VPN（Vultr+Shadowsocks）</a></h1>
+          <h1 class="post-title" itemprop="name headline">造梯子：用VPS搭建VPN（Vultr+Shadowsocks）</h1>
         
 
         <div class="post-meta">
@@ -345,6 +344,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本页总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
 
           
 
@@ -363,17 +367,42 @@
       
 
       
-        
-          <p>最近开始了实验室搬砖的生活，首先要把基础运维工作做好。其中，VPN是必不可少的，对查阅国内外文献资料，学习学习国际前沿知识都是很有帮助的。以前一直用学校和公司的VPN，现在用不了了，于是打算自己搭一个。</p>
+        <p>最近开始了实验室搬砖的生活，首先要把基础运维工作做好。其中，VPN是必不可少的，对查阅国内外文献资料，学习学习国际前沿知识都是很有帮助的。以前一直用学校和公司的VPN，现在用不了了，于是打算自己搭一个。</p>
 <p>本文记录如何使用Vultr（VPS提供商）和Shadowsocks来搭建属于自己的VPN。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/04/造梯子：用VPS搭建VPN（Vultr+Shadowsocks）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<a id="more"></a>
+<h3 id="Vultr"><a href="#Vultr" class="headerlink" title="Vultr"></a>Vultr</h3><p>Vultr是一家VPS服务商，所谓VPS（Virtual Private Server）就是把一台服务器分割成多个虚拟的专有的服务器以供多人使用。</p>
+<p>简单来说就是，这家网站搞了一堆服务器，又把服务器分割成一个个小服务器，他们拥有独立的IP、操作系统、磁盘空间等以供大家使用。想想自如的隔断房……</p>
+<p>我们要做的就是从Vultr租这么一间“隔断间”。</p>
+<p>网站操作十分简单，注册、登录之后，直接点击Server中的加号，选择心仪的服务器，部署即可。</p>
+<p>当然，这家网站是需要充钱的，10美元起充。服务器的价格也不算太贵，最低版本的服务器只支持IPv6协议，我个人购买了5美元/月的服务器（1000Gb/月）。</p>
+<p>网站支持AliPay，充值完成后就可以部署服务器了。这家网站被“重点关照”过，所以新加坡和日本的服务器的IP有很多被禁了，大家部署之后要先Ping一下试试，如果丢包率过高，尝试换别的服务器。</p>
+<p>另外，Vultr提供了脚本测试各个地区服务器的速度，有兴趣的同学可以再尝试。</p>
+<p>我部署时测试的速度大概是新加坡、日本最快，美国东部城市的稍慢一些。</p>
+<p>然而日本和新加坡的服务器IP被封了，Vultr默认部署同一地区的服务器是同一IP，也就是说你关掉这一台服务器，重新部署之后也还是这个IP，除非你买一个会员，才可以重新配置IP。</p>
+<p>于是我选择洛杉矶的服务器，网速还可以接受。</p>
+<p>部署很简单，按照步骤操作即可，系统选择CentOS7。</p>
+<p>部署好后，会显示你的IP与登录账户名和密码。</p>
+<hr>
+<h3 id="部署Shadowsocks-Server"><a href="#部署Shadowsocks-Server" class="headerlink" title="部署Shadowsocks Server"></a>部署Shadowsocks Server</h3><p>使用Vultr的Console或者在本地使用ssh。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ssh 用户名@IP地址</span><br><span class="line">输入密码</span><br></pre></td></tr></table></figure>
+<p>进入后，安装bbr加速工具和shadowsocks server（Linux端）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; wget –no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br><span class="line"></span><br><span class="line">&gt; chmod +x bbr.sh</span><br><span class="line"></span><br><span class="line">&gt; ./bbr.sh</span><br><span class="line"></span><br><span class="line">&gt; wget — no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br><span class="line"></span><br><span class="line">&gt; chmod +x shadowsocks.sh</span><br><span class="line"></span><br><span class="line">&gt; ./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure>
+<p>接下来配置shadowsocks</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; vi /etc/shadowsocks.json</span><br></pre></td></tr></table></figure>
+<p>会出现如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;xxx.xxx.xxx.xxx&quot;,</span><br><span class="line">    &quot;local_address&quot;:&quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;local_port&quot;:1080,</span><br><span class="line">    &quot;port_password&quot;:&#123;</span><br><span class="line">         &quot;端口&quot;:&quot;密码&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;timeout&quot;:300,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</span><br><span class="line">    &quot;fast_open&quot;: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更改 <code>port_password</code> 和 <code>method</code> 即可增加端口和对应密码（多用户），以及更改加密方式。</p>
+<p><code>port_password</code>中的书写方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;port_password&quot;:&#123;</span><br><span class="line">         &quot;1234&quot;:&quot;123456&quot;,</span><br><span class="line">         &quot;2345&quot;:&quot;234567&quot;,</span><br><span class="line">         &quot;3456&quot;:&quot;345678&quot;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+<p>配置好<code>shadowsocks.json</code>的文件后，记得要开放对应的端口。</p>
+<p>如开放1234端口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/sbin/iptables -I INPUT -p tcp --dport 1234 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>接着，执行如下命令重启shadowsocks。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
+<hr>
+<p>至此，基本的ss搭建完毕，回到本机，打开ss，输入对应的IP、端口、密码及加密方式，打开代理即可。</p>
+<p></p>
+
       
     </div>
     
@@ -388,14 +417,22 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/翻墙/" rel="tag"># 翻墙</a>
+          
+            <a href="/tags/服务器/" rel="tag"># 服务器</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -405,10 +442,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -416,6 +454,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODUyMy8xNTA1MQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -436,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -549,6 +605,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vultr"><span class="nav-number">1.</span> <span class="nav-text">Vultr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署Shadowsocks-Server"><span class="nav-number">2.</span> <span class="nav-text">部署Shadowsocks Server</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -709,6 +781,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -737,6 +813,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
