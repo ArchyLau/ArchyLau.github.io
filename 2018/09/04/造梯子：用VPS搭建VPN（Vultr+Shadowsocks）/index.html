@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="宵朗">
 <meta property="og:description" content="最近开始了实验室搬砖的生活，首先要把基础运维工作做好。其中，VPN是必不可少的，对查阅国内外文献资料，学习学习国际前沿知识都是很有帮助的。以前一直用学校和公司的VPN，现在用不了了，于是打算自己搭一个。 本文记录如何使用Vultr（VPS提供商）和Shadowsocks来搭建属于自己的VPN。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-05T07:16:32.000Z">
+<meta property="og:updated_time" content="2020-02-02T07:17:59.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造梯子：用VPS搭建VPN（Vultr+Shadowsocks）">
 <meta name="twitter:description" content="最近开始了实验室搬砖的生活，首先要把基础运维工作做好。其中，VPN是必不可少的，对查阅国内外文献资料，学习学习国际前沿知识都是很有帮助的。以前一直用学校和公司的VPN，现在用不了了，于是打算自己搭一个。 本文记录如何使用Vultr（VPS提供商）和Shadowsocks来搭建属于自己的VPN。">
@@ -369,8 +369,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
                   </a>
                 </span>
 
@@ -443,6 +443,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/sbin/iptables -I INPUT -p tcp --dport 1234 -j ACCEPT</span><br></pre></td></tr></table></figure>
 <p>接着，执行如下命令重启shadowsocks。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
+<hr>
+<p>CentOS 7 默认使用firewalld 代替了之前的Iptables</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">启动： systemctl start firewalld</span><br><span class="line"></span><br><span class="line">关闭： systemctl stop firewalld</span><br><span class="line"></span><br><span class="line">查看状态： systemctl status firewalld </span><br><span class="line"></span><br><span class="line">开机禁用  ： systemctl disable firewalld</span><br><span class="line"></span><br><span class="line">开机启用  ： systemctl enable firewalld</span><br><span class="line"></span><br><span class="line">查看版本： firewall-cmd --version</span><br><span class="line"></span><br><span class="line">查看帮助： firewall-cmd --help</span><br><span class="line"></span><br><span class="line">显示状态： firewall-cmd --state</span><br><span class="line"></span><br><span class="line">查看所有打开的端口： firewall-cmd --zone=public --list-ports</span><br><span class="line"></span><br><span class="line">更新防火墙规则： firewall-cmd --reload</span><br><span class="line"></span><br><span class="line">查看区域信息:  firewall-cmd --get-active-zones</span><br><span class="line"></span><br><span class="line">查看指定接口所属区域： firewall-cmd --get-zone-of-interface=eth0</span><br><span class="line"></span><br><span class="line">拒绝所有包：firewall-cmd --panic-on</span><br><span class="line"></span><br><span class="line">取消拒绝状态： firewall-cmd --panic-off</span><br><span class="line"></span><br><span class="line">查看是否拒绝： firewall-cmd --query-panic</span><br></pre></td></tr></table></figure>
+<p>我们需要使用的命令是 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">开启一个80端口</span><br><span class="line">&gt; firewall-cmd --zone=public --add-port=80/tcp --permanent    </span><br><span class="line">（--permanent永久生效，没有此参数重启后失效，--zone #作用域 ，--add-port=80/tcp #添加端口，格式为：端口/通讯协议 ）</span><br><span class="line"></span><br><span class="line">重新载入firewall</span><br><span class="line">&gt; firewall-cmd --reload</span><br><span class="line"></span><br><span class="line">查看已开放的端口</span><br><span class="line">&gt; firewall-cmd --list-ports</span><br><span class="line"></span><br><span class="line">删除开放80端口</span><br><span class="line">&gt; firewall-cmd --zone= public --remove-port=80/tcp --permanent</span><br></pre></td></tr></table></figure>
 <hr>
 <p>至此，基本的ss搭建完毕，回到本机，打开ss，输入对应的IP、端口、密码及加密方式，打开代理即可。</p>
 <p></p>
@@ -581,7 +586,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -693,7 +698,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-cloudversify"></i>
   </span>
