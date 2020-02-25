@@ -741,7 +741,27 @@
 <li>可重定位目标文件：可与其它可重定位目标文件在链接阶段合并，创建一个可执行目标文件；</li>
 <li>共享目标文件：这是一种特殊的可重定位目标文件，可以在运行时被动态加载进内存并链接；</li>
 </ul>
-<h3 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h3><h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1>
+<h3 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h3><p>静态库有以下两个问题：</p>
+<p>当静态库更新时那么整个程序都要重新进行链接；<br>对于 printf 这种标准函数库，如果每个程序都要有代码，这会极大浪费资源。<br>共享库是为了解决静态库的这两个问题而设计的，在 Linux 系统中通常用 .so 后缀来表示，Windows 系统上它们被称为 DLL。它具有以下特点：</p>
+<ul>
+<li>在给定的文件系统中一个库只有一个文件，所有引用该库的可执行目标文件都共享这个文件，它不会被复制到引用它的可执行文件中；</li>
+<li>在内存中，一个共享库的 .text 节（已编译程序的机器代码）的一个副本可以被不同的正在运行的进程共享。</li>
+</ul>
+<p><img src="动态链接.jpg" alt="动态链接"></p>
+<h2 id="Linux-部分知识补充"><a href="#Linux-部分知识补充" class="headerlink" title="Linux 部分知识补充"></a>Linux 部分知识补充</h2><h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><ul>
+<li>能简单实用 cat, grep, cut 等命令进行一些操作</li>
+<li>文件系统相关的原理， inode和block等概念，数据恢复</li>
+<li>硬链接与软链接</li>
+<li>进程管理相关，僵尸进程和孤儿进程，SIGCHLD</li>
+</ul>
+<h3 id="常用操作和指令-参考github-参考资料"><a href="#常用操作和指令-参考github-参考资料" class="headerlink" title="常用操作和指令 参考github 参考资料"></a>常用操作和指令 参考github <a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Linux.md#孤儿进程" target="_blank" rel="noopener">参考资料</a></h3><h3 id="孤儿进程"><a href="#孤儿进程" class="headerlink" title="孤儿进程"></a>孤儿进程</h3><p>一个父进程退出，而它的一个或多个子进程还在运行，那么这些子进程将成为孤儿进程。</p>
+<p>孤儿进程将被 init 进程（进程号为 1）所收养，并由 init 进程对它们完成状态收集工作。</p>
+<p>由于孤儿进程会被 init 进程收养，所以孤儿进程不会对系统造成危害。</p>
+<h3 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h3><p>一个子进程的进程描述符在子进程退出时不会释放，只有当父进程通过 wait() 或 waitpid() 获取了子进程信息后才会释放。如果子进程退出，而父进程并没有调用 wait() 或 waitpid()，那么子进程的进程描述符仍然保存在系统中，这种进程称之为僵尸进程。</p>
+<p>僵尸进程通过 ps 命令显示出来的状态为 Z（zombie）。</p>
+<p>系统所能使用的进程号是有限的，如果产生大量僵尸进程，将因为没有可用的进程号而导致系统不能产生新的进程。</p>
+<p>要消灭系统中大量的僵尸进程，只需要将其父进程杀死，此时僵尸进程就会变成孤儿进程，从而被 init 进程所收养，这样 init 进程就会释放所有的僵尸进程所占有的资源，从而结束僵尸进程。</p>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><h2 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h2><h2 id="各层作用及协议详解"><a href="#各层作用及协议详解" class="headerlink" title="各层作用及协议详解"></a>各层作用及协议详解</h2><h2 id="TCP与UDP详解"><a href="#TCP与UDP详解" class="headerlink" title="TCP与UDP详解"></a>TCP与UDP详解</h2><h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h2 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h2><h3 id="I-O模型"><a href="#I-O模型" class="headerlink" title="I/O模型"></a>I/O模型</h3><h3 id="I-O复用"><a href="#I-O复用" class="headerlink" title="I/O复用"></a>I/O复用</h3>
           
         
       
