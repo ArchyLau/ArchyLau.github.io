@@ -316,6 +316,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/容器基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Archy Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/link.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宵朗">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/26/容器基础/" itemprop="url">容器基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-26T23:44:30+08:00">
+                2020-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>主要参考资料</p>
+<ul>
+<li><a href="https://cyc2018.github.io/CS-Notes/#/notes/Docker" target="_blank" rel="noopener">csNotes</a></li>
+<li><a href="https://edu.aliyun.com/lesson_1651_16823" target="_blank" rel="noopener">阿里云原生公开课</a></li>
+</ul>
+<h1 id="容器基本概念"><a href="#容器基本概念" class="headerlink" title="容器基本概念"></a>容器基本概念</h1><h2 id="什么是容器与镜像？如何构建容器与镜像"><a href="#什么是容器与镜像？如何构建容器与镜像" class="headerlink" title="什么是容器与镜像？如何构建容器与镜像"></a>什么是容器与镜像？如何构建容器与镜像</h2><h3 id="什么是容器"><a href="#什么是容器" class="headerlink" title="什么是容器"></a>什么是容器</h3><p>在介绍容器的具体概念之前，先简单回顾一下操作系统是如何管理进程的。</p>
+<p>首先，当我们登录到操作系统之后，可以通过 ps 等操作看到各式各样的进程，这些进程包括系统自带的服务和用户的应用进程。那么，这些进程都有什么样的特点？</p>
+<ol>
+<li>这些进程可以相互看到、相互通信；</li>
+<li>它们使用的是同一个文件系统，可以对同一个文件进行读写操作；</li>
+<li>这些进程会使用相同的系统资源。</li>
+</ol>
+<p>这样的三个特点会带来什么问题呢？</p>
+<p>因为这些进程能够相互看到并且进行通信，高级权限的进程可以攻击其他进程；<br>因为它们使用的是同一个文件系统，因此会带来两个问题：这些进程可以对于已有的数据进行增删改查，具有高级权限的进程可能会将其他进程的数据删除掉，破坏掉其他进程的正常运行；此外，进程与进程之间的依赖可能会存在冲突，如此一来就会给运维带来很大的压力；<br>因为这些进程使用的是同一个宿主机的资源，应用之间可能会存在资源抢占的问题，当一个应用需要消耗大量 CPU 和内存资源的时候，就可能会破坏其他应用的运行，导致其他应用无法正常地提供服务。</p>
+<h2 id="容器的生命周期"><a href="#容器的生命周期" class="headerlink" title="容器的生命周期"></a>容器的生命周期</h2><h2 id="容器项目的架构"><a href="#容器项目的架构" class="headerlink" title="容器项目的架构"></a>容器项目的架构</h2><h2 id="容器-VS-VM"><a href="#容器-VS-VM" class="headerlink" title="容器 VS.VM"></a>容器 VS.VM</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1597,7 +1752,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1619,7 +1774,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
