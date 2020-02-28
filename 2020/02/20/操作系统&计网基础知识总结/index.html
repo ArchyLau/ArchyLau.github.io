@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="操作系统基本概念梳理基本特征并发并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入进程和线程，使得程序能够并发运行。 共享共享是指系统中的资源可以被多个并发进程共同使用。 有两种共享方式：互斥共享和同时共享。 互斥共享的资源称为临界资源，例如打印机等，在同一时刻只允许一个进程访问，需要用同">
+<meta name="description" content="操作系统基本概念梳理基本特征并发并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入进程和线程，使得程序能够并发运行。">
 <meta name="keywords" content="操作系统,计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统&amp;计网基础知识总结">
 <meta property="og:url" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/index.html">
 <meta property="og:site_name" content="宵朗">
-<meta property="og:description" content="操作系统基本概念梳理基本特征并发并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入进程和线程，使得程序能够并发运行。 共享共享是指系统中的资源可以被多个并发进程共同使用。 有两种共享方式：互斥共享和同时共享。 互斥共享的资源称为临界资源，例如打印机等，在同一时刻只允许一个进程访问，需要用同">
+<meta property="og:description" content="操作系统基本概念梳理基本特征并发并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入进程和线程，使得程序能够并发运行。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/系统调用图解.png">
 <meta property="og:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/微内核示意图.jpg">
@@ -98,10 +98,10 @@
 <meta property="og:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/编译系统.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/静态链接.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/动态链接.jpg">
-<meta property="og:updated_time" content="2020-02-26T16:02:02.134Z">
+<meta property="og:updated_time" content="2020-02-28T08:15:05.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统&amp;计网基础知识总结">
-<meta name="twitter:description" content="操作系统基本概念梳理基本特征并发并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入进程和线程，使得程序能够并发运行。 共享共享是指系统中的资源可以被多个并发进程共同使用。 有两种共享方式：互斥共享和同时共享。 互斥共享的资源称为临界资源，例如打印机等，在同一时刻只允许一个进程访问，需要用同">
+<meta name="twitter:description" content="操作系统基本概念梳理基本特征并发并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入进程和线程，使得程序能够并发运行。">
 <meta name="twitter:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/系统调用图解.png">
 
 
@@ -426,6 +426,7 @@
         <h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h2 id="基本概念梳理"><a href="#基本概念梳理" class="headerlink" title="基本概念梳理"></a>基本概念梳理</h2><h3 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h3><h4 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h4><p>并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。</p>
 <p>并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。</p>
 <p>操作系统通过引入进程和线程，使得程序能够<strong>并发</strong>运行。</p>
+<a id="more"></a>
 <h4 id="共享"><a href="#共享" class="headerlink" title="共享"></a>共享</h4><p>共享是指系统中的资源可以被多个并发进程共同使用。</p>
 <p>有两种共享方式：互斥共享和同时共享。</p>
 <p>互斥共享的资源称为临界资源，例如打印机等，在同一时刻只允许一个进程访问，需要用同步机制来实现互斥访问。</p>
