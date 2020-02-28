@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/编译系统.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/静态链接.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/20/操作系统&计网基础知识总结/动态链接.jpg">
-<meta property="og:updated_time" content="2020-02-28T08:15:05.269Z">
+<meta property="og:updated_time" content="2020-02-28T08:19:04.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统&amp;计网基础知识总结">
 <meta name="twitter:description" content="操作系统基本概念梳理基本特征并发并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入进程和线程，使得程序能够并发运行。">
@@ -602,8 +602,77 @@
 <li>私有：线程栈、寄存器、程序计数器</li>
 <li>共享：堆、地址空间、全局变量、静态变量</li>
 </ul>
-<h3 id="多进程与多线程之间的对比、优劣和选择"><a href="#多进程与多线程之间的对比、优劣和选择" class="headerlink" title="多进程与多线程之间的对比、优劣和选择"></a>多进程与多线程之间的对比、优劣和选择</h3><p>对比<br>|    对比维度    |                              多进程                              |                             多线程                             |   总结   |<br>| :————: | :————————————————————–: | :————————————————————: | :——: |<br>| 数据共享、同步 |         数据共享复杂，需要用IPC；数据是分开的，同步简单          | 因为共享进程数据，数据共享简单，但是也因为这个原因导致同步复杂 | 各有优劣 |<br>|   内存、CPU    |                占用内存多，切换复杂，CPU利用率低                 |               占用内存少，切换简单，CPU利用率高                | 线程占优 |<br>| 创建销毁、切换 |                    创建销毁和切换复杂，速度慢                    |                   创建销毁和切换简单，速度快                   | 线程占优 |<br>|   编程、调试   |                        编程简单，调试简单                        |                       编程复杂，调试复杂                       | 进程占优 |<br>|     可靠性     |                        进程间不会互相影响                        |                 一个线程挂掉将导致整个进程挂掉                 | 进程占优 |<br>|     分布式     | 适应于多核、多机分布式；如果一台机器不够，扩展到多台机器比较简单 |                        适应于多核分布式                        | 进程占优 |</p>
-<p>优劣总结<br>| 优劣  |                  多进程                  |                  多线程                  |<br>| :—: | :————————————–: | :————————————–: |<br>| 优点  |        编程、调试简单，可靠性较高        | 创建、销毁、切换速度快，内存、资源占用小 |<br>| 缺点  | 创建、销毁、切换速度慢，内存、资源占用大 |        编程、调试复杂，可靠性较差        |</p>
+<h3 id="多进程与多线程之间的对比、优劣和选择"><a href="#多进程与多线程之间的对比、优劣和选择" class="headerlink" title="多进程与多线程之间的对比、优劣和选择"></a>多进程与多线程之间的对比、优劣和选择</h3><p>对比</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">对比维度</th>
+<th style="text-align:center">多进程</th>
+<th style="text-align:center">多线程</th>
+<th style="text-align:center">总结</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">数据共享、同步</td>
+<td style="text-align:center">数据共享复杂，需要用IPC；数据是分开的，同步简单</td>
+<td style="text-align:center">因为共享进程数据，数据共享简单，但是也因为这个原因导致同步复杂</td>
+<td style="text-align:center">各有优劣</td>
+</tr>
+<tr>
+<td style="text-align:center">内存、CPU</td>
+<td style="text-align:center">占用内存多，切换复杂，CPU利用率低</td>
+<td style="text-align:center">占用内存少，切换简单，CPU利用率高</td>
+<td style="text-align:center">线程占优</td>
+</tr>
+<tr>
+<td style="text-align:center">创建销毁、切换</td>
+<td style="text-align:center">创建销毁和切换复杂，速度慢</td>
+<td style="text-align:center">创建销毁和切换简单，速度快</td>
+<td style="text-align:center">线程占优</td>
+</tr>
+<tr>
+<td style="text-align:center">编程、调试</td>
+<td style="text-align:center">编程简单，调试简单</td>
+<td style="text-align:center">编程复杂，调试复杂</td>
+<td style="text-align:center">进程占优</td>
+</tr>
+<tr>
+<td style="text-align:center">可靠性</td>
+<td style="text-align:center">进程间不会互相影响</td>
+<td style="text-align:center">一个线程挂掉将导致整个进程挂掉</td>
+<td style="text-align:center">进程占优</td>
+</tr>
+<tr>
+<td style="text-align:center">分布式</td>
+<td style="text-align:center">适应于多核、多机分布式；如果一台机器不够，扩展到多台机器比较简单</td>
+<td style="text-align:center">适应于多核分布式</td>
+<td style="text-align:center">进程占优</td>
+</tr>
+</tbody>
+</table>
+<p>优劣总结</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">优劣</th>
+<th style="text-align:center">多进程</th>
+<th style="text-align:center">多线程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">优点</td>
+<td style="text-align:center">编程、调试简单，可靠性较高</td>
+<td style="text-align:center">创建、销毁、切换速度快，内存、资源占用小</td>
+</tr>
+<tr>
+<td style="text-align:center">缺点</td>
+<td style="text-align:center">创建、销毁、切换速度慢，内存、资源占用大</td>
+<td style="text-align:center">编程、调试复杂，可靠性较差</td>
+</tr>
+</tbody>
+</table>
 <p>选择策略</p>
 <ul>
 <li>需要频繁创建销毁的优先用线程</li>
