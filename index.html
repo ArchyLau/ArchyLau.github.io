@@ -316,6 +316,513 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/Cpp高频问题整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Archy Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/link.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宵朗">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/01/Cpp高频问题整理/" itemprop="url">Cpp高频问题整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T20:21:43+08:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://blog.csdn.net/xie810005152/article/details/91038878" target="_blank" rel="noopener">参考资料</a></p>
+<ul>
+<li><p>[] 指针和引用的区别</p>
+<ol>
+<li>本质上：引用是别名，指针是地址</li>
+<li>现象上：指针可以在运行时改变所指向的值，但引用初始化后不能当做其他变量的别名了。</li>
+<li>内存上：程序为指针变量分配区域，但不为引用分配内存区域，因为引用必须初始化时指向一个存在的对象，引用不能为空值。</li>
+<li>编译时：程序在编译时分别将指针和引用添加到<strong>符号表</strong>上，符号表上记录的是变量名及变量所对应地址。指针变量在符号表上对应的地址值为<strong>指针变量的地址值</strong>，而引用在符号表上对应的地址值为<strong>引用对象的地址值</strong>。符号表生成后就不会再改，因此指针可以改变指向的对象（指针变量中的值可以改），而引用对象不能改。这是使用指针不安全而使用引用安全的主要原因。从某种意义上来说引用可以被认为是<strong>不能改变的指针</strong>。</li>
+<li><p>级数：从理论上来说，对于指针没有级数限制，但是引用只有一级。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>** p1; <span class="comment">// 合法。指向指针的指针</span></span><br><span class="line"><span class="keyword">int</span>*&amp; p2; <span class="comment">// 合法。指向指针的引用</span></span><br><span class="line"><span class="keyword">int</span>&amp;* p3; <span class="comment">// 非法。指向引用的指针是非法的</span></span><br><span class="line"><span class="keyword">int</span>&amp;&amp; p4; <span class="comment">// 非法。指向引用的引用是非法的</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>效率上：<br>其实两者的效率是一致的，因为在底层中，指针和引用的参数都指向同一个地址。在高级编程语言中，因为用*传参可能会指向空的地址或者错误的地址，所以要时时判断参数是否为空，导致降低效率。而用&amp;传参数，则参数不可能为空或者错误地址，这也算稍微提升了一些效率。</p>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>[] 堆和栈的区别</p>
+<ol>
+<li>申请方式不同。栈上有系统自动分配和释放；堆上有程序员自己申请并指明大小；</li>
+<li>栈是向低地址扩展的数据结构，大小很有限；堆是向高地址扩展，是不连续的内存区域，空间相对大且灵活；</li>
+<li>栈由系统分配和释放速度快；堆由程序员控制，一般较慢，且容易产生碎片；</li>
+</ol>
+</li>
+<li><p>[] new和delete是如何实现的，new 与 malloc的异同处</p>
+<ol>
+<li>new/new[]和delete/delete[]是操作符；是C++用来实现动态内存管理的操作符；</li>
+<li>new/new[] 操作符是用来申请空间的；delete/delete[]操作数是用来释放动态申请出来的空间；</li>
+<li>内置类型：<br>如果申请的是内置类型的空间，new和malloc，delete和free基本类似；<br>不同之处：<br>new在申请空间失败时会抛异常；<br>malloc在申请空间失败时会返回NULL；</li>
+<li>自定义类型：<br>new的原理：<br>调用operator new函数申请空间；<br>在申请的空间上执行构造函数，完成对象的构造；<br>delete的原理：<br>在空间上执行析构函数，完成对象中资源的清理工作；<br>调用operator delete函数释放对象的空间；<br>new[N]的原理：<br>调用operator new[]函数，在operator new[]中实际调用operator new函数完成N个对象空间的申请；<br>在申请的空间上执行N次构造函数；<br>delete[N]的原理：<br>在释放的对象空间上执行N次析构函数，完成N个对象中资源的清理；<br>调用operator delete[]释放空间，实际在operator delete[]中调用operator delete来释放空间；</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>[] C和C++的区别</p>
+<ol>
+<li><p>C语言是一种结构化语言，面向过程，基于算法和数据结构，所考虑的是如何通过一个过程或者函数从输入得到输出；</p>
+</li>
+<li><p>C++是面向对象，基于类、对象和继承，所考虑的是如何构造一个对象模型，让这个模型能够契合与之对应的问题，通过获取对象的状态信息得到输出或实现过程控制。</p>
+</li>
+</ol>
+</li>
+<li><p>[] C++、Java的联系与区别，包括语言特性、垃圾回收、应用场景等（java的垃圾回收机制）</p>
+<ol>
+<li>Java为解释性语言，其运行过程为：程序源代码经过Java编译器编译成字节码，然后由JVM解释执行。而C/C++为编译型语言，源代码经过编译和链接后生成可执行的二进制代码，可直接执行。因此Java的执行速度比C/C++慢，但Java能够跨平台执行，C/C++不能。</li>
+<li>Java是纯面向对象语言，所有代码（包括函数、变量）必须在类中实现，除基本数据类型（包括int、float等）外，所有类型都是类。此外，Java语言中不存在全局变量或者全局函数，而C++兼具面向过程和面向对象编程的特点，可以定义全局变量和全局函数。</li>
+<li>与C/C++语言相比，Java语言中没有指针的概念，这有效防止了C/C++语言中操作指针可能引起的系统问题，从而使程序变得更加安全。</li>
+<li>与C++语言相比，Java语言不支持多重继承，但是Java语言引入了接口的概念，可以同时实现多个接口。由于接口也有多态特性，因此Java语言中可以通过实现多个接口来实现与C++语言中多重继承类似的目的。</li>
+<li>在C++语言中，需要开发人员去管理内存的分配（包括申请和释放），而Java语言提供了垃圾回收器来实现垃圾的自动回收，不需要程序显示地管理内存的分配。在C++语言中，通常会把释放资源的代码放到析构函数中，Java语言中虽然没有析构函数，但却引入了一个finalize()方法，当垃圾回收器要释放无用对象的内存时，会首先调用该对象的finalize()方法，因此，开发人员不需要关心也不需要知道对象所占的内存空间何时被释放。</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>[] Struct和class的区别<br>面向过程的编程认为，数据和数据操作是分开的。然而当struct进入面向对象的c++时，其特性也有了新发展，在c++中就能运行，因为在c++中认为数据和数据对象是一个整体，不应该分开，这就是struct在c和c++两个时代的差别。<br>在C++中struct得到了很大的扩充：</p>
+<ol>
+<li>struct可以包括成员函数</li>
+<li>struct可以实现继承</li>
+<li>struct可以实现多态</li>
+</ol>
+<p>区别主要在于：</p>
+<ol>
+<li>默认的访问权限，class默认是private而struct是public。</li>
+<li>默认的继承访问权。class默认的是private,strcut默认的是public。</li>
+<li>“class”这个关键字还用于定义模板参数，就像“typename”。但关键字“struct”不用于定义模板参数。</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>[] define 和const的区别（编译阶段、安全性、内存占用等）</p>
+<ul>
+<li><p>const定义的常数是变量，也带类型，#define定义的只是个常数，不带类型。</p>
+</li>
+<li><p>define在预处理阶段进行替换；const在编译时确定其值；</p>
+</li>
+<li><p>define只进行简单的字符串替换，没有类型检查；而const由对应的数据类型，编译时会进行类型检查。</p>
+</li>
+<li><p>define定义的变量在预处理后存放在代码段的空间里，const修饰的变量占用数据段空间。</p>
+</li>
+<li><p>宏定义的作用范围仅限于当前文件，const对象使用extern声明后可以在多个文件之间共享。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>[] 在C++中const和static的用法（定义，用途）<ul>
+<li>const<ul>
+<li>修饰变量，说明该变量不可被改变；</li>
+<li>修饰指针，分为指向常量的指针和指针常量</li>
+<li>常量引用，经常用于形参类型，既避免了拷贝，又避免了函数对值的修改</li>
+<li>修饰成员函数，说明该成员函数内不能修改成员变量。</li>
+</ul>
+</li>
+<li>static<ul>
+<li>修饰普通变量，修改变量的存储区域和生命周期，使变量存储在静态区，在main函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它。</li>
+<li>修饰普通函数，表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，为了防止与他人命名空间里的函数重名，可以将函数定位为static。</li>
+<li>修饰成员变量，修饰成员变量使所有的对象只保存一个该变量，而且不需要生成对象就可以访问该成员。</li>
+<li>修饰成员函数，修饰成员函数使得不需要生成对象就可以访问该函数，但是在static函数内不能访问非静态成员。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>[] const和static在类中使用的注意事项（定义、初始化和使用）</p>
+<ul>
+<li><p>static数据成员的初始化必须在类外初始化；const数据成员必须在构造函数初始化列表中进行初始化，因为类成员不能声明初始化，同时const成员不能在成员函数中赋值，因为const不能被改变。</p>
+</li>
+<li><p>const成员函数不能改变任何一个数据成员的值，但是可以改变static成员的值。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>[] C++中的const类成员函数（用法和意义），以及和非const成员函数的区别</p>
+<ul>
+<li><p>const和非const函数是可以构成重载的，但是仅凭返回值是否为const是无法构成重载的。</p>
+</li>
+<li><p>若将成员函数声明为const，则该函数不允许修改类的数据成员。值得注意的是，把一个成员函数声明为const可以保证这个成员函数不修改数据成员，但是，如果据成员是指针，则const成员函数并不能保证不修改指针指向的对象，编译器不会把这种修改检测为错误。</p>
+</li>
+<li><p>const成员函数可以被具有相同参数列表的非const成员函数重载。</p>
+</li>
+<li><p>const成员函数可以访问非const对象的非const数据成员、const数据成员，也可以访问const对象内的所有数据成员，但不能修改任何变量；非const成员函数可以访问非const对象的数据成员、const数据成员，但不可以访问const对象的任意数据成员。</p>
+</li>
+<li><p>const成员函数只能用于非静态成员函数，不能用于静态成员函数</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>[] C++的顶层const和底层const<ul>
+<li>底层const是代表对象本身是一个常量（不可改变）；</li>
+<li>顶层const是代表指针的值是一个常量,而指针的值(即对象的地址)的内容可以改变（指向的不可改变）；</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>[] final和override关键字</p>
+<ul>
+<li>final限定某个类不能被继承或某个虚函数不能被重写。如果修饰函数只能修饰虚函数，且要放到类或函数后面。</li>
+<li>override关键字保证了派生类中声明重写的函数与基类虚函数有相同的签名，可避免一些拼写错误，如加了此关键字但基类中并不存在相同的函数就会报错，也可以防止把本来想重写的虚函数声明成了重载。</li>
+</ul>
+</li>
+<li><p>[] 拷贝初始化和直接初始化，初始化和赋值的区别<br>- </p>
+</li>
+<li>[] extern “C”的用法</li>
+<li>[] 模板函数和模板类的特例化</li>
+<li>[] C++的STL源码（这个系列也很重要，建议侯捷老师的STL源码剖析书籍与视频），其中包括内存池机制，各种容器的底层实现机制，算法的实现原理等）</li>
+<li>[] STL源码中的hashtable的实现</li>
+<li>[] STL中unordered_map和map的区别和应用场景</li>
+<li>[] STL中vector的实现</li>
+<li>[] STL容器的几种迭代器以及对应的容器（输入迭代器，输出迭代器，前向迭代器，双向迭代器，随机访问迭代器）</li>
+<li>[] STL中的traits技法</li>
+<li>[] vector使用的注意点及其原因，频繁对vector调用push_back()对性能的影响和原因。</li>
+<li>[] C++中的重载和重写的区别</li>
+<li>[] C++内存管理，内存池技术（热门问题），与csapp中几种内存分配方式对比学习加深理解</li>
+<li>[] 介绍面向对象的三大特性，并且举例说明每一个</li>
+<li>[] C++多态的实现</li>
+<li>[] C++虚函数相关（虚函数表，虚函数指针），虚函数的实现原理（包括单一继承，多重继承等）（拓展问题：为什么基类指针指向派生类对象时可以调用派生类成员函数，基类的虚函数存放在内存的什么区，虚函数表指针vptr的初始化时间）</li>
+<li>[] C++中类的数据成员和成员函数内存分布情况</li>
+<li>[] this指针</li>
+<li>[] 析构函数一般写成虚函数的原因</li>
+<li>[] 构造函数、拷贝构造函数和赋值操作符的区别</li>
+<li>[] 构造函数声明为explicit</li>
+<li>[] 构造函数为什么一般不定义为虚函数</li>
+<li>[] 构造函数的几种关键字(default delete 0)</li>
+<li>[] 构造函数或者析构函数中调用虚函数会怎样</li>
+<li>[] 纯虚函数</li>
+<li>[] 静态类型和动态类型，静态绑定和动态绑定的介绍</li>
+<li>[] 引用是否能实现动态绑定，为什么引用可以实现</li>
+<li>[] 深拷贝和浅拷贝的区别（举例说明深拷贝的安全性）</li>
+<li>[] 对象复用的了解，零拷贝的了解</li>
+<li>[] 介绍C++所有的构造函数</li>
+<li>[] 什么情况下会调用拷贝构造函数（三种情况）</li>
+<li>[] 结构体内存对齐方式和为什么要进行内存对齐？</li>
+<li>[] 内存泄露的定义，如何检测与避免？</li>
+<li>[] 手写智能指针的实现（shared_ptr和weak_ptr实现的区别）</li>
+<li>[] 智能指针的循环引用</li>
+<li>[] 遇到coredump要怎么调试</li>
+<li>[] 内存检查工具的了解</li>
+<li>[] 模板的用法与适用场景</li>
+<li>[] 成员初始化列表的概念，为什么用成员初始化列表会快一些（性能优势）？</li>
+<li>[] 用过C++ 11吗，知道C++ 11哪些新特性？</li>
+<li>[] C++的调用惯例（简单一点C++函数调用的压栈过程）</li>
+<li>[] C++的四种强制转换</li>
+<li>[] C++中将临时变量作为返回值的时候的处理过程（栈上的内存分配、拷贝过程）</li>
+<li>[] C++的异常处理</li>
+<li>[] volatile关键字</li>
+<li>[] 优化程序的几种方法</li>
+<li>[] public，protected和private访问权限和继承</li>
+<li>[] class和struct的区别</li>
+<li>[] decltype()和auto</li>
+<li>[] inline和宏定义的区别</li>
+<li>[] C++和C的类型安全</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/29/C++知识整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Archy Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/link.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宵朗">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/29/C++知识整理/" itemprop="url">C++知识整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T14:44:11+08:00">
+                2020-02-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考资料：<br><a href="https://github.com/huihut/interview#-cc" target="_blank" rel="noopener">huihui-interview</a><br><a href="#">后台开发核心技术</a></p>
+<h1 id="Const"><a href="#Const" class="headerlink" title="Const"></a>Const</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ol>
+<li>修饰变量，说明该变量不可被改变；</li>
+<li>修饰指针，分为指向常量的指针和指针常量；</li>
+<li>常量引用，经常用于形参类型，既避免了拷贝，又避免了函数对值的修改；</li>
+<li>修饰成员函数，说明该成员函数内不能修改成员变量。</li>
+</ol>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">int</span> a;  <span class="comment">// 常对象成员，只能在初始化列表赋值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">// 构造函数</span></span><br><span class="line">  A() : a(<span class="number">0</span>) &#123;&#125;;</span><br><span class="line">  A(<span class="keyword">int</span> x) : a(x) &#123;&#125;; <span class="comment">// 初始化列表</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// const 可用于对重载函数的区分</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">getValue</span><span class="params">()</span></span>;     <span class="comment">// 普通成员函数</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">getValue</span><span class="params">()</span> <span class="keyword">const</span></span>;     <span class="comment">// 常成员函数，不得修改类中的任何数据成员的值</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// 对象</span></span><br><span class="line">  A b;  <span class="comment">// 普通对象，可以调用全部成员函数，更新常成员变量</span></span><br><span class="line">  <span class="keyword">const</span> A a;  <span class="comment">// 常对象，只能调用常成员函数</span></span><br><span class="line">  <span class="keyword">const</span> A *p=&amp;a;  <span class="comment">// 常指针</span></span><br><span class="line">  <span class="keyword">const</span> A &amp;q=a;   <span class="comment">// 常引用</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 指针</span></span><br><span class="line">  <span class="keyword">char</span> greeting[] = <span class="string">"Hello"</span>;</span><br><span class="line">  <span class="keyword">char</span>* p1=greeting;  <span class="comment">//指针变量，指向字符数组变量</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span>* p2=greeting;  <span class="comment">// 指针变量，指向字符数组常量</span></span><br><span class="line">  <span class="keyword">char</span>* <span class="keyword">const</span> p3 = greeting;          <span class="comment">// 常指针，指向字符数组变量</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> p4 = greeting;    <span class="comment">// 常指针，指向字符数组常量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function1</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> Var)</span></span>;           <span class="comment">// 传递过来的参数在函数内不可变</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function2</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* Var)</span></span>;         <span class="comment">// 参数指针所指内容为常量</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function3</span><span class="params">(<span class="keyword">char</span>* <span class="keyword">const</span> Var)</span></span>;         <span class="comment">// 参数指针为常指针</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function4</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; Var)</span></span>;          <span class="comment">// 引用参数在函数内为常量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数返回值</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">function5</span><span class="params">()</span></span>;      <span class="comment">// 返回一个常数</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span>* <span class="title">function6</span><span class="params">()</span></span>;     <span class="comment">// 返回一个指向常量的指针变量，使用：const int *p = function6();</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="keyword">const</span> <span class="title">function7</span><span class="params">()</span></span>;     <span class="comment">// 返回一个指向变量的常指针，使用：int* const p = function7();</span></span><br></pre></td></tr></table></figure>
+<h2 id="判断方法"><a href="#判断方法" class="headerlink" title="判断方法"></a>判断方法</h2><p><strong>从右往左读</strong></p>
+<p><img src="常指针.png" alt="常指针"><br><img src="指针常量.png" alt="指针常量"><br><img src="指针指向常量.png" alt="指针常量"></p>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><h2 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h2><ol>
+<li>修饰普通变量，修改变量的存储区域和生命周期，使变量存储在静态区，在main函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它。</li>
+<li>修饰普通函数，表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，为了防止与他人命名空间里的函数重名，可以将函数定位为static。</li>
+<li>修饰成员变量，修饰成员变量使所有的对象只保存一个该变量，而且不需要生成对象就可以访问该成员。</li>
+<li>修饰成员函数，修饰成员函数使得不需要生成对象就可以访问该函数，但是在static函数内不能访问非静态成员。</li>
+</ol>
+<h1 id="this-指针"><a href="#this-指针" class="headerlink" title="this 指针"></a>this 指针</h1><ol>
+<li>this 指针是一个隐含于每一个非静态成员函数中的特殊指针。它指向调用该成员函数的那个对象。</li>
+<li>当对一个对象调用成员函数时，编译程序先将对象的地址赋给 this 指针，然后调用成员函数，每次成员函数存取数据成员时，都隐式使用 this 指针。</li>
+<li>当一个成员函数被调用时，自动向它传递一个隐含的参数，该参数是一个指向这个成员函数所在的对象的指针。</li>
+<li>this 指针被隐含地声明为: ClassName <em>const this，这意味着不能给 this 指针赋值；在 ClassName 类的 const 成员函数中，this 指针的类型为：const ClassName</em> const，这说明不能对 this 指针所指向的这种对象是不可修改的（即不能对这种对象的数据成员进行赋值操作）；</li>
+<li>this 并不是一个常规变量，而是个右值，所以不能取得 this 的地址（不能 &amp;this）。</li>
+<li>在以下场景中，经常需要显式引用 this 指针：<ol>
+<li>为实现对象的链式引用；</li>
+<li>为避免对同一对象进行赋值操作；</li>
+<li>在实现一些数据结构时，如 list。</li>
+</ol>
+</li>
+</ol>
+<h1 id="虚函数、虚函数表、虚函数指针"><a href="#虚函数、虚函数表、虚函数指针" class="headerlink" title="虚函数、虚函数表、虚函数指针"></a>虚函数、虚函数表、虚函数指针</h1><p><a href="https://blog.csdn.net/f6s281t0/article/details/40789069" target="_blank" rel="noopener">解析虚函数表</a><br><a href="https://www.zhihu.com/question/23971699/answer/84332610" target="_blank" rel="noopener">虚函数是用来实现多态的</a></p>
+<h1 id="虚继承"><a href="#虚继承" class="headerlink" title="虚继承"></a>虚继承</h1><p><a href="http://c.biancheng.net/view/2280.html" target="_blank" rel="noopener">虚继承</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/容器基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1409,7 +1916,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1431,7 +1938,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
