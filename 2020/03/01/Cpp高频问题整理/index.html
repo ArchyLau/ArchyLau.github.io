@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="宵朗">
 <meta property="og:description" content="参考资料  [] 指针和引用的区别  本质上：引用是别名，指针是地址 现象上：指针可以在运行时改变所指向的值，但引用初始化后不能当做其他变量的别名了。 内存上：程序为指针变量分配区域，但不为引用分配内存区域，因为引用必须初始化时指向一个存在的对象，引用不能为空值。 编译时：程序在编译时分别将指针和引用添加到符号表上，符号表上记录的是变量名及变量所对应地址。指针变量在符号表上对应的地址值为指针变量的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-03T15:30:01.812Z">
+<meta property="og:updated_time" content="2020-03-05T14:08:40.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cpp高频问题整理">
 <meta name="twitter:description" content="参考资料  [] 指针和引用的区别  本质上：引用是别名，指针是地址 现象上：指针可以在运行时改变所指向的值，但引用初始化后不能当做其他变量的别名了。 内存上：程序为指针变量分配区域，但不为引用分配内存区域，因为引用必须初始化时指向一个存在的对象，引用不能为空值。 编译时：程序在编译时分别将指针和引用添加到符号表上，符号表上记录的是变量名及变量所对应地址。指针变量在符号表上对应的地址值为指针变量的">
@@ -669,7 +669,12 @@
 <li>[] volatile关键字</li>
 <li>[] 优化程序的几种方法</li>
 <li>[] public，protected和private访问权限和继承</li>
-<li>[] class和struct的区别</li>
+<li>[] class和struct的区别<ul>
+<li>class默认private访问，而struct是public</li>
+</ul>
+</li>
+</ul>
+<ul>
 <li>[] decltype()和auto</li>
 <li>[] inline和宏定义的区别</li>
 <li>[] C++和C的类型安全</li>
