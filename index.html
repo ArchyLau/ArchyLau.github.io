@@ -995,7 +995,119 @@
 </ol>
 <h1 id="虚函数、虚函数表、虚函数指针"><a href="#虚函数、虚函数表、虚函数指针" class="headerlink" title="虚函数、虚函数表、虚函数指针"></a>虚函数、虚函数表、虚函数指针</h1><p><a href="https://blog.csdn.net/f6s281t0/article/details/40789069" target="_blank" rel="noopener">解析虚函数表</a><br><a href="https://www.zhihu.com/question/23971699/answer/84332610" target="_blank" rel="noopener">虚函数是用来实现多态的</a></p>
 <h1 id="虚继承"><a href="#虚继承" class="headerlink" title="虚继承"></a>虚继承</h1><p><a href="http://c.biancheng.net/view/2280.html" target="_blank" rel="noopener">虚继承</a></p>
-<h1 id="C-参考网站"><a href="#C-参考网站" class="headerlink" title="C++参考网站"></a>C++参考网站</h1><p><a href="http://c.biancheng.net/stl/algorithms/" target="_blank" rel="noopener">C语言中文网</a><br><a href="https://github.com/steveLauwh/SGI-STL/" target="_blank" rel="noopener">SGI-STL解析</a></p>
+<h1 id="STL基本操作"><a href="#STL基本操作" class="headerlink" title="STL基本操作"></a>STL基本操作</h1><h2 id="vector-变长数组，倍增的思想"><a href="#vector-变长数组，倍增的思想" class="headerlink" title="vector, 变长数组，倍增的思想"></a>vector, 变长数组，倍增的思想</h2><ul>
+<li>size()  返回元素个数</li>
+<li>empty()  返回是否为空</li>
+<li>clear()  清空</li>
+<li>front()/back()</li>
+<li>push_back()/pop_back()</li>
+<li>begin()/end()</li>
+<li>[]</li>
+<li>支持比较运算，按字典序</li>
+</ul>
+<h2 id="pair-lt-int-int-gt"><a href="#pair-lt-int-int-gt" class="headerlink" title="pair&lt;int, int&gt;"></a>pair&lt;int, int&gt;</h2><ul>
+<li>first, 第一个元素</li>
+<li>second, 第二个元素</li>
+<li>支持比较运算，以first为第一关键字，以second为第二关键字（字典序）</li>
+</ul>
+<h2 id="string，字符串"><a href="#string，字符串" class="headerlink" title="string，字符串"></a>string，字符串</h2><ul>
+<li>size()/length()  返回字符串长度</li>
+<li>empty()</li>
+<li>clear()</li>
+<li>substr(起始下标，(子串长度))  返回子串</li>
+<li>c_str()  返回字符串所在字符数组的起始地址</li>
+</ul>
+<h2 id="queue-队列"><a href="#queue-队列" class="headerlink" title="queue, 队列"></a>queue, 队列</h2><ul>
+<li>size()</li>
+<li>empty()</li>
+<li>push()  向队尾插入一个元素</li>
+<li>front()  返回队头元素</li>
+<li>back()  返回队尾元素</li>
+<li>pop()  弹出队头元素</li>
+</ul>
+<h2 id="priority-queue-优先队列，默认是大根堆"><a href="#priority-queue-优先队列，默认是大根堆" class="headerlink" title="priority_queue, 优先队列，默认是大根堆"></a>priority_queue, 优先队列，默认是大根堆</h2><ul>
+<li>push()  插入一个元素</li>
+<li>top()  返回堆顶元素</li>
+<li>pop()  弹出堆顶元素</li>
+<li>定义成小根堆的方式：priority_queue&lt;int, vector<int>, greater<int>&gt; q;</int></int></li>
+</ul>
+<h2 id="stack-栈"><a href="#stack-栈" class="headerlink" title="stack, 栈"></a>stack, 栈</h2><ul>
+<li>size()</li>
+<li>empty()</li>
+<li>push()  向栈顶插入一个元素</li>
+<li>top()  返回栈顶元素</li>
+<li>pop()  弹出栈顶元素</li>
+</ul>
+<h2 id="deque-双端队列"><a href="#deque-双端队列" class="headerlink" title="deque, 双端队列"></a>deque, 双端队列</h2><ul>
+<li>size()</li>
+<li>empty()</li>
+<li>clear()</li>
+<li>front()/back()</li>
+<li>push_back()/pop_back()</li>
+<li>push_front()/pop_front()</li>
+<li>begin()/end()</li>
+<li>[]</li>
+</ul>
+<h2 id="set-map-multiset-multimap-基于平衡二叉树（红黑树），动态维护有序序列"><a href="#set-map-multiset-multimap-基于平衡二叉树（红黑树），动态维护有序序列" class="headerlink" title="set, map, multiset, multimap, 基于平衡二叉树（红黑树），动态维护有序序列"></a>set, map, multiset, multimap, 基于平衡二叉树（红黑树），动态维护有序序列</h2><ul>
+<li>size()</li>
+<li>empty()</li>
+<li>clear()</li>
+<li>begin()/end()</li>
+<li>++, – 返回前驱和后继，时间复杂度 O(logn)</li>
+</ul>
+<h3 id="set-multiset"><a href="#set-multiset" class="headerlink" title="set/multiset"></a>set/multiset</h3><ul>
+<li>insert()  插入一个数</li>
+<li>find()  查找一个数</li>
+<li>count()  返回某一个数的个数</li>
+<li>erase()<ul>
+<li>输入是一个数x，删除所有x   O(k + logn)</li>
+<li>输入一个迭代器，删除这个迭代器</li>
+</ul>
+</li>
+<li>lower_bound()/upper_bound()<ul>
+<li>lower_bound(x)  返回大于等于x的最小的数的迭代器</li>
+<li>upper_bound(x)  返回大于x的最小的数的迭代器</li>
+</ul>
+</li>
+</ul>
+<h3 id="map-multimap"><a href="#map-multimap" class="headerlink" title="map/multimap"></a>map/multimap</h3><ul>
+<li>insert()  插入的数是一个pair</li>
+<li>erase()  输入的参数是pair或者迭代器</li>
+<li>find()</li>
+<li>[]  注意multimap不支持此操作。 时间复杂度是 O(logn)</li>
+<li>lower_bound()/upper_bound()</li>
+</ul>
+<h2 id="unordered-set-unordered-map-unordered-multiset-unordered-multimap-哈希表"><a href="#unordered-set-unordered-map-unordered-multiset-unordered-multimap-哈希表" class="headerlink" title="unordered_set, unordered_map, unordered_multiset, unordered_multimap, 哈希表"></a>unordered_set, unordered_map, unordered_multiset, unordered_multimap, 哈希表</h2><ul>
+<li>和上面类似，增删改查的时间复杂度是 O(1)</li>
+<li>不支持 lower_bound()/upper_bound()， 迭代器的++，–</li>
+</ul>
+<h2 id="bitset-圧位"><a href="#bitset-圧位" class="headerlink" title="bitset, 圧位"></a>bitset, 圧位</h2><ul>
+<li>bitset<10000> s;</10000></li>
+<li>~, &amp;, |, ^</li>
+<li><blockquote>
+<blockquote>
+<p>, &lt;&lt;</p>
+</blockquote>
+</blockquote>
+</li>
+<li>==, !=</li>
+<li><p>[]</p>
+</li>
+<li><p>count()  返回有多少个1</p>
+</li>
+<li><p>any()  判断是否至少有一个1</p>
+</li>
+<li><p>none()  判断是否全为0</p>
+</li>
+<li><p>set()  把所有位置成1</p>
+</li>
+<li>set(k, v)  将第k位变成v</li>
+<li>reset()  把所有位变成0</li>
+<li>flip()  等价于~</li>
+<li>flip(k) 把第k位取反</li>
+</ul>
+<h1 id="C-参考网站"><a href="#C-参考网站" class="headerlink" title="C++参考网站"></a>C++参考网站</h1><p><a href="http://c.biancheng.net/stl/algorithms/" target="_blank" rel="noopener">C语言中文网</a></p>
+<h2 id="stl"><a href="#stl" class="headerlink" title="stl"></a>stl</h2><p><a href="https://github.com/steveLauwh/SGI-STL/" target="_blank" rel="noopener">SGI-STL解析</a></p>
 
           
         
